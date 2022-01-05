@@ -1,0 +1,49 @@
+.time-picker {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  width: 277px;
+}
+
+.time-picker .MuiSelect-select {
+  padding: 0;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.time-picker.mui-focused .muiselect-icon {
+  color: purple;
+}
+
+.time-picker.Mui-focused:after {
+  border-color: purple;
+}
+
+.time-picker .MuiSelect-iconOpen {
+  color: purple;
+  transform: initial;
+}
+
+/* .MuiPaper-root {
+  top: 497px;
+  background-color: lightblue;
+} */
+
+/* sx={{
+  height: '56px',
+  position: 'relative',
+  '&.Mui-focused:after': {
+    backgroundColor: 'yellow',
+    borderColor: 'purple',
+  },
+  '&.Mui-focused .MuiSelect-icon': {
+    color: 'purple',
+  },
+  '& .MuiSelect-iconOpen': {
+    color: 'purple',
+    transform: 'unset',
+  },
+}} */

@@ -4,8 +4,14 @@ import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
+import { StyledEngineProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
+import theme from '../theme/theme';
 
 import './app.css';
+import MyDatePicker from '../calendar';
+import TimePicker from '../time-picker/time-picker';
+import { Grid } from '@mui/material';
 
 class App extends Component {
   constructor() {
@@ -48,10 +54,7 @@ class App extends Component {
       const idx = state.todoData.findIndex((el) => el.id === id);
 
       // Нельзя изменять существующий State.
-      const newArray = [
-        ...state.todoData.slice(0, idx),
-        ...state.todoData.slice(idx + 1),
-      ];
+      const newArray = [...state.todoData.slice(0, idx), ...state.todoData.slice(idx + 1)];
 
       return {
         todoData: newArray,
@@ -94,9 +97,7 @@ class App extends Component {
     }
 
     return todos.filter((todo) => {
-      return (
-        todo.todoText.toLowerCase().indexOf(searchInput.toLowerCase()) > -1
-      );
+      return todo.todoText.toLowerCase().indexOf(searchInput.toLowerCase()) > -1;
     });
   }
 
@@ -127,25 +128,32 @@ class App extends Component {
     const todoCount = todoData.length - doneCount;
 
     return (
-      <div className="todo-app">
-        <AppHeader todo={todoCount} done={doneCount} />
-        <div className="top-panel d-flex">
-          <SearchPanel onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter
-            currentFilter={currentFilter}
-            onFilterChange={this.onFilterChange}
-          />
-        </div>
-
-        <TodoList
-          todos={visibleTodos}
-          onDeleted={this.deleteItem}
-          onToggleImportant={this.onToggleImportant}
-          onToggleDone={this.onToggleDone}
-        />
-
-        <ItemAddForm onItemAdded={this.addItem} />
-      </div>
+      <ThemeProvider theme={theme}>
+        <StyledEngineProvider injectFirst>
+          <div className="todo-app">
+            <AppHeader todo={todoCount} done={doneCount} />
+            <div className="top-panel d-flex">
+              <SearchPanel onSearchChange={this.onSearchChange} />
+              <ItemStatusFilter currentFilter={currentFilter} onFilterChange={this.onFilterChange} />
+            </div>
+            <TodoList
+              todos={visibleTodos}
+              onDeleted={this.deleteItem}
+              onToggleImportant={this.onToggleImportant}
+              onToggleDone={this.onToggleDone}
+            />
+            <ItemAddForm onItemAdded={this.addItem} />
+            <Grid container>
+              <Grid item xs={12} my={2}>
+                <MyDatePicker />
+              </Grid>
+              <Grid item xs={12}>
+                <TimePicker />
+              </Grid>
+            </Grid>
+          </div>
+        </StyledEngineProvider>
+      </ThemeProvider>
     );
   }
 }

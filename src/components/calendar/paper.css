@@ -1,0 +1,7 @@
+.paper .MuiPickersDay-root.Mui-selected {
+  background-color: purple;
+}
+
+.paper .MuiPickersDay-root.Mui-selected:focus {
+  outline: none;
+}

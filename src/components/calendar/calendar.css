@@ -1,0 +1,11 @@
+.calendar {
+  width: 277px;
+}
+
+.calendar .MuiIconButton-root:focus {
+  outline: none;
+}
+
+.calendar .MuiIconButton-root.opened {
+  color: purple;
+}
